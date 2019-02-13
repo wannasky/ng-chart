@@ -1,0 +1,14 @@
+{
+  "name": "ng-chart",
+  "version": "1.0.0",
+  "description": "基于d3.js的angular7.x图表组件库",
+  "scripts": {},
+  "author": "wannasky",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/core": "^7.2.4",
+    "@angular/platform-browser": "^7.2.4",
+    "@angular/platform-browser-dynamic": "^7.2.4",
+    "rxjs": "^6.4.0"
+  }
+}
