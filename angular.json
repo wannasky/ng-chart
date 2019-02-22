@@ -21,7 +21,8 @@
               "demo/src/assets"
             ],
             "styles": [
-              "demo/src/styles.scss"
+              "demo/src/styles.scss",
+              "demo/src/styles/material-light.scss"
             ],
             "scripts": []
           },

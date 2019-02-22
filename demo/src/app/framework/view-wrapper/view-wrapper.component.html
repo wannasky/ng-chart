@@ -1,0 +1,8 @@
+<div class="demo-component-tabs">
+  <a class="demo-component-tab" *ngFor="let item of menus"
+     [routerLink]="item.path"
+     routerLinkActive="active"
+  >
+    {{item.name}}
+  </a>
+</div>

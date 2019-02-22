@@ -1,0 +1,11 @@
+<div class="gallery">
+  <dl *ngFor="let view of views">
+    <dt>{{view.category}}</dt>
+    <dd *ngFor="let item of view.list">
+      <a routerLink="{{view.path}}/{{item.path}}">
+        <p>{{item.title}}</p>
+        <img [src]='item.img'>
+      </a>
+    </dd>
+  </dl>
+</div>

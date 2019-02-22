@@ -2,7 +2,11 @@
   "name": "ng-chart",
   "version": "1.0.0",
   "description": "基于d3.js的angular7.x图表组件库",
-  "scripts": {},
+  "scripts": {
+    "ng": "ng",
+    "markdown": "gulp markdown",
+    "start": "concurrently \"npm run markdown\" \"ng serve\" "
+  },
   "author": "wannasky",
   "license": "MIT",
   "dependencies": {
@@ -11,6 +15,7 @@
     "@angular/core": "^7.2.4",
     "@angular/platform-browser": "^7.2.4",
     "@angular/platform-browser-dynamic": "^7.2.4",
+    "@angular/router": "^7.2.4",
     "rxjs": "^6.4.0",
     "zone.js": "^0.8.29"
   },
@@ -21,9 +26,17 @@
     "@angular/compiler-cli": "^7.2.4",
     "@types/node": "^11.9.3",
     "codelyzer": "^4.5.0",
+    "concurrently": "^4.1.0",
+    "gulp": "^4.0.0",
+    "gulp-highlight-files": "0.0.6",
+    "gulp-markdown": "^3.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-transform": "^3.0.5",
+    "highlight.js": "^9.14.2",
     "ng-packagr": "^4.7.0",
     "node-sass": "^4.11.0",
     "ts-node": "^8.0.2",
+    "tsconfig-paths": "^3.8.0",
     "tsickle": "^0.34.3",
     "tslint": "^5.12.1",
     "typescript": "^3.2.4"

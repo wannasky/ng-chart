@@ -1,0 +1,27 @@
+.demo-component-tabs{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  height: 61px;
+  overflow: hidden;
+
+  .demo-component-tab{
+    color: #333;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+    padding: 20px;
+    text-decoration: none;
+
+    &:hover{
+      background-color: #f0f0f0;
+    }
+
+    &.active{
+      border-bottom: 2px solid #2196f3;
+    }
+  }
+}
+
+.demo-component-viewer{
+  padding: 20px;
+}
