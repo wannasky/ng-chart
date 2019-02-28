@@ -1,10 +1,23 @@
-import {AreaChartComponent} from "./area-chart/areaChart.component";
-import {BarChartComponent} from "./bar-chart/barChart.component";
-import {LineChartComponent} from "./line-chart/lineChart.component";
+import {AreaChartComponent} from "./basic-charts/area-chart/areaChart.component";
+import {BarChartComponent} from "./basic-charts/bar-chart/barChart.component";
+import {LineChartComponent} from "./basic-charts/line-chart/lineChart.component";
 
-interface Example {
+
+export interface Tab {
+  name: string;
+  filename: string;
+}
+
+export enum Source {
+  HTML = 'HTML',
+  TS = 'TS',
+  SCSS = 'SCSS'
+}
+
+export interface Example {
   title: string;
   component: any;
+  source?: any[];
 }
 
 interface Chart {
@@ -28,29 +41,30 @@ export const view: View[] = [
       {
         title: 'Area Chart',
         examples: {
-          basic: {
+          areaChart: {
             title: '基本使用',
-            component: AreaChartComponent
+            component: AreaChartComponent,
+            source: [Source.HTML, Source.TS, Source.SCSS, {name: 'JSON', filename: 'data/data.json'}]
           }
         }
       },
       {
         title: 'Line Chart',
-        examples: [
-          {
+        examples: {
+          lineChart: {
             title: '基本使用',
             component: LineChartComponent
           }
-        ]
+        }
       },
       {
         title: 'Bar Chart',
-        examples: [
-          {
+        examples: {
+          barChart: {
             title: '基本使用',
             component: BarChartComponent
           }
-        ]
+        }
       }
     ]
   }

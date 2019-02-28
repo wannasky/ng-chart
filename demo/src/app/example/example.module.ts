@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
-import {AreaChartComponent} from "./area-chart/areaChart.component";
-import {BarChartComponent} from "./bar-chart/barChart.component";
-import {LineChartComponent} from "./line-chart/lineChart.component";
+import {AreaChartComponent} from "./basic-charts/area-chart/areaChart.component";
+import {BarChartComponent} from "./basic-charts/bar-chart/barChart.component";
+import {LineChartComponent} from "./basic-charts/line-chart/lineChart.component";
 
 @NgModule({
   declarations: [

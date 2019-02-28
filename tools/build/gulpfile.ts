@@ -17,7 +17,7 @@ const config = {
   examplePattern: /<!--\W*example\(([^)]+)\)\W*-->/g,
 
   // example文件
-  exampleFilePath: 'demo/src/app/example/*/**/*.+(html|scss|ts)'
+  exampleFilePath: 'demo/src/app/example/*/**/*.+(html|scss|ts|json)'
 };
 
 const markdownOptions = {

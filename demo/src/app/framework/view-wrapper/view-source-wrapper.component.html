@@ -1,0 +1,19 @@
+<div class="example-component-wrapper-view">
+  <div class="example-component-title">
+    <div class="example-component-title-h">{{title}}</div>
+    <button class="code-toggle" (click)="toggleShowSource()">
+      <svg focusable="false" viewBox="0 0 24 24"><g><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"></path></g></svg>
+    </button>
+  </div>
+  <div class="example-component-source" *ngIf="showSource">
+    <div class="example-file-tab">
+      <a *ngFor="let tab of tabs" (click)="switchTab(tab.name)" [class.active]="currentTab === tab.name">{{tab.name}}</a>
+    </div>
+    <div  class="example-component-source-code">
+      <pre class="hljs"><demo-view-load [url]="getTabLinkUrl()"></demo-view-load></pre>
+    </div>
+  </div>
+  <div class="example-component-body">
+    <ng-template [cdkPortalOutlet]="componentPortal"></ng-template>
+  </div>
+</div>

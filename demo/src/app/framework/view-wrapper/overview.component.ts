@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {AppViewService} from "../../example/view.service";
 
 @Component({
   selector: 'demo-overview',
@@ -6,4 +7,9 @@ import {Component} from "@angular/core";
 })
 export class AppOverviewComponent {
 
+  view: any;
+
+  constructor(private viewService: AppViewService) {
+    this.view = this.viewService.getView();
+  }
 }

@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
 import {combineLatest} from "rxjs";
+import {AppViewService} from "../../example/view.service";
+import {map} from "rxjs/operators";
 
 interface Menu {
   name: string;
@@ -19,10 +21,13 @@ export class AppViewWrapperComponent {
     {name: '示例', path: 'example'}
   ]);
 
-  constructor(private route: ActivatedRoute) {
-    combineLatest(route.params)
+  constructor(private route: ActivatedRoute, private viewService: AppViewService) {
+    combineLatest(route.params, route.parent.params)
+      .pipe(
+        map((item: [Params, Params]) => item[0])
+      )
       .subscribe(data => {
-        console.log(data)
-      })
+        this.viewService.setCurrentView(data);
+      });
   }
 }
