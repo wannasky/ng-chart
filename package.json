@@ -17,6 +17,8 @@
     "@angular/platform-browser": "^7.2.4",
     "@angular/platform-browser-dynamic": "^7.2.4",
     "@angular/router": "^7.2.4",
+    "@types/d3": "^5.7.1",
+    "d3": "^5.9.1",
     "rxjs": "^6.4.0",
     "zone.js": "^0.8.29"
   },
