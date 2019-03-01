@@ -1,12 +1,4 @@
-import {AreaChartComponent} from "./basic-charts/area-chart/areaChart.component";
-import {BarChartComponent} from "./basic-charts/bar-chart/barChart.component";
-import {LineChartComponent} from "./basic-charts/line-chart/lineChart.component";
-
-
-export interface Tab {
-  name: string;
-  filename: string;
-}
+import {AreaChartBasicComponent} from "./basic-charts/area-chart/basic/basic.component";
 
 export enum Source {
   HTML = 'HTML',
@@ -43,26 +35,8 @@ export const view: View[] = [
         examples: {
           areaChart: {
             title: '基本使用',
-            component: AreaChartComponent,
+            component: AreaChartBasicComponent,
             source: [Source.HTML, Source.TS, Source.SCSS, {name: 'JSON', filename: 'data/data.json'}]
-          }
-        }
-      },
-      {
-        title: 'Line Chart',
-        examples: {
-          lineChart: {
-            title: '基本使用',
-            component: LineChartComponent
-          }
-        }
-      },
-      {
-        title: 'Bar Chart',
-        examples: {
-          barChart: {
-            title: '基本使用',
-            component: BarChartComponent
           }
         }
       }

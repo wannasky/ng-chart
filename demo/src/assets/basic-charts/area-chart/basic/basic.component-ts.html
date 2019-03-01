@@ -1,0 +1,20 @@
+<span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">"@angular/core"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> d3 <span class="hljs-keyword">from</span> <span class="hljs-string">'d3'</span>;
+<span class="hljs-keyword">import</span> {fromPromise} <span class="hljs-keyword">from</span> <span class="hljs-string">"rxjs/internal-compatibility"</span>;
+
+<span class="hljs-meta">@Component</span>({
+  selector: <span class="hljs-string">'demo-area-chart'</span>,
+  templateUrl: <span class="hljs-string">'./basic.component.html'</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AreaChartBasicComponent {
+
+  data: <span class="hljs-built_in">any</span>[];
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>){
+    fromPromise(d3.json(<span class="hljs-string">'assets/data/page.json'</span>))
+      .subscribe(<span class="hljs-function">(<span class="hljs-params">data: <span class="hljs-built_in">any</span>[]</span>) =&gt;</span> {
+        <span class="hljs-keyword">this</span>.data = data;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'data'</span>, data)
+      });
+  }
+}

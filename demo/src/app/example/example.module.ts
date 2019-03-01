@@ -1,23 +1,18 @@
 import {NgModule} from "@angular/core";
-import {AreaChartComponent} from "./basic-charts/area-chart/areaChart.component";
-import {BarChartComponent} from "./basic-charts/bar-chart/barChart.component";
-import {LineChartComponent} from "./basic-charts/line-chart/lineChart.component";
+import {AreaChartBasicComponent} from "./basic-charts/area-chart/basic/basic.component";
+import {HttpClientModule} from "@angular/common/http";
+import {NgChartModule} from "ng-chart";
 
 @NgModule({
+  imports: [NgChartModule, HttpClientModule],
   declarations: [
-    AreaChartComponent,
-    BarChartComponent,
-    LineChartComponent
+    AreaChartBasicComponent
   ],
   exports: [
-    AreaChartComponent,
-    BarChartComponent,
-    LineChartComponent
+    AreaChartBasicComponent
   ],
   entryComponents: [
-    AreaChartComponent,
-    BarChartComponent,
-    LineChartComponent
+    AreaChartBasicComponent
   ]
 })
 export class AppExampleModule {

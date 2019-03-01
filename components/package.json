@@ -1,0 +1,21 @@
+{
+  "name": "ng-chart",
+  "version": "1.0.0",
+  "description": "Angular chart",
+  "keywords": [
+    "chart",
+    "angular",
+    "d3",
+    "ng",
+    "framework"
+  ],
+  "author": "wannasky",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "@angular/common": "7.2.1",
+    "@angular/core": "7.2.1",
+    "typescript": "3.2.2"
+  }
+}

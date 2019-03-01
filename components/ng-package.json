@@ -1,0 +1,11 @@
+{
+  "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../archive",
+  "deleteDestPath": true,
+  "lib": {
+    "entryFile": "ng-chart.module.ts"
+  },
+  "whitelistedNonPeerDependencies": [
+    "angular"
+  ]
+}

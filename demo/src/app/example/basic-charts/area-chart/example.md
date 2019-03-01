@@ -1,2 +1,2 @@
 
-<!-- example(areaChart) -->
+<!-- example(basic) -->
