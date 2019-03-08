@@ -1,51 +1,24 @@
 import {
-  AfterContentInit,
-  Component,
-  ComponentRef,
-  ContentChildren,
-  Input, QueryList,
-  ViewChild
+  Component, OnChanges, SimpleChanges,
 } from "@angular/core";
-import {SVGComponent} from "../svg/svg.component";
-import {AxisComponent} from "../axis/axis.component";
+import {Chart} from "../common/chart";
+import {SvgService} from "../svg/svg.service";
+
 
 @Component({
   selector: 'nc-area-chart, ncAreaChart',
   exportAs: 'ncAreaChart',
   templateUrl: './area-chart.component.html'
 })
-export class AreaChartComponent implements AfterContentInit{
+export class AreaChartComponent extends Chart implements OnChanges{
 
-  private _data: any;
-
-  @ViewChild(SVGComponent) SVGComp: ComponentRef<any>;
-
-  @ContentChildren(AxisComponent) AxisComp: QueryList<AxisComponent>;
-
-  @Input() width: number;
-
-  @Input() height: number;
-
-  @Input()
-  set data(value: any) {
-    this._data = value;
-    this.dispatch();
+  constructor(protected svgService: SvgService) {
+    super(svgService);
   }
 
-  get data(): any {
-    return this._data;
-  }
-
-  dispatch() {
-    if(this.AxisComp){
-      this.AxisComp.forEach(item => {
-        item.setData(this.data);
-      });
+  ngOnChanges(changes: SimpleChanges): void {
+    for(let key in changes){
+      this.svgService[key] = changes[key].currentValue;
     }
   }
-
-  ngAfterContentInit(): void {
-    this.dispatch();
-  }
-
 }

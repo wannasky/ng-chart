@@ -5,11 +5,11 @@ import {AxisModule} from "./axis/axis.module";
 
 // SVG
 export {SVGModule} from './svg/svg.module';
-export {SVGComponent} from './svg/svg.component';
+export {SvgDirective} from './svg/svg.directive';
 
 // Axis
 export {AxisModule} from './axis/axis.module';
-export {AxisComponent} from './axis/axis.component';
+export {AxisDirective} from './axis/axis.directive';
 
 // Area Chart
 export {AreaChartModule} from './area-chart/area-chart.module';

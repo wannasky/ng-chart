@@ -1,9 +1,9 @@
 import {NgModule} from "@angular/core";
-import {SVGComponent} from "./svg.component";
+import {SvgDirective} from "./svg.directive";
 
 @NgModule({
-  declarations: [SVGComponent],
-  exports: [SVGComponent]
+  declarations: [SvgDirective],
+  exports: [SvgDirective]
 })
 export class SVGModule {
 

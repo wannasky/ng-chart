@@ -1,9 +1,9 @@
 import {NgModule, NO_ERRORS_SCHEMA} from "@angular/core";
-import {AxisComponent} from "./axis.component";
+import {AxisDirective} from "./axis.directive";
 
 @NgModule({
-  declarations: [AxisComponent],
-  exports: [AxisComponent],
+  declarations: [AxisDirective],
+  exports: [AxisDirective],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class AxisModule {
