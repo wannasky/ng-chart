@@ -24,6 +24,8 @@ export class SvgDirective {
     }
   }
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) {
+    this.elementRef.nativeElement.classList.add('nc-svg');
+  }
 
 }

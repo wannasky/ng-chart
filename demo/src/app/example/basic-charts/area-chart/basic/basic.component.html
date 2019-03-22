@@ -1,5 +1,7 @@
 <div>
-  <nc-area-chart width="700" height="300" [data]="data">
-    <nc-axis type="x" label="name"></nc-axis>
-  </nc-area-chart>
+  <nc-area width="700" height="300" [data]="data">
+    <nc-axis-x label="name"></nc-axis-x>
+    <nc-axis-y></nc-axis-y>
+    <nc-area-chart key="pv" shape="monotone"></nc-area-chart>
+  </nc-area>
 </div>
