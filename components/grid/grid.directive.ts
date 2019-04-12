@@ -6,7 +6,6 @@ import {AxisYDirective} from "../axis/axis-y.directive";
 import {AxisXDirective} from "../axis/axis-x.directive";
 import {combineLatest} from "rxjs";
 import {Selection} from "d3-selection";
-import {axisBottom, axisLeft} from "d3-axis";
 
 @Directive({
   selector: 'nc-grid'
