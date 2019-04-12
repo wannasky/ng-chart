@@ -1,29 +1,20 @@
-import {
-  Component, Inject, OnChanges, SimpleChanges, SkipSelf,
-} from "@angular/core";
-import {Chart} from "../common/chart";
-import {SvgService} from "../svg/svg.service";
-import {CHART_ACCESSOR} from "../common/token";
+import {Component} from "@angular/core";
+import {Container} from "../common/container";
+
+
 
 @Component({
   selector: 'nc-area, ncArea',
   exportAs: 'ncArea',
-  template: '<svg nc-svg [width]="width" [height]="height"></svg>',
+  template: '<svg #root></svg>',
   providers: [
-    {provide: CHART_ACCESSOR, useValue: 'area', multi: true}
+    {provide: Container, useExisting: AreaComponent}
   ]
 })
-export class AreaComponent extends Chart implements OnChanges{
+export class AreaComponent extends Container{
 
-  constructor(protected svgService: SvgService, @Inject(CHART_ACCESSOR) accessor: any) {
-    super(svgService);
-    console.log(accessor)
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    for(let key in changes){
-      this.svgService[key] = changes[key].currentValue;
-    }
+  constructor() {
+    super();
   }
 
 }

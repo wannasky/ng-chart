@@ -1,63 +1,132 @@
-import {Directive, Inject, Input, SkipSelf} from "@angular/core";
-import {SvgService} from "../svg/svg.service";
+import {Directive, Host, Input, OnInit} from "@angular/core";
+import {Container} from "../common/container";
 import * as d3 from 'd3';
-import {StateAccessor} from "../common/state-register";
-import {CHART_ACCESSOR} from "../common/token";
-
+import {Axis, axisBottom, ScaleBand, ScaleTime} from "d3";
+import {filter} from "rxjs/operators";
+import {ViewReady} from "../common/events";
+import {AxisGroup} from "../common/axis-group";
 
 @Directive({
   selector: 'nc-axis-x',
-  exportAs: 'ncAxisX',
-  providers: [
-    {provide: CHART_ACCESSOR, useExisting: AxisXDirective, multi: true}
-  ]
+  exportAs: 'ncAxisX'
 })
-export class AxisXDirective implements StateAccessor{
+export class AxisXDirective extends AxisGroup implements OnInit {
 
-  @Input() label: string;
+  public scale: ScaleBand<any> | ScaleTime<any, any>;
 
-  private onChange: (value: any) => void = () => null;
+  public axis: Axis<any>;
 
-  domain() {
-    return this.svgService.data.map(item => item.name);
+  private _count: number;
+
+  @Input() key: string;
+
+  @Input() type: string;
+
+  @Input()
+  set count(value: number) {
+    this._count = value;
   }
 
-  range(): [number, number] {
-    const padding = this.svgService.padding;
-    return [0, this.svgService.width - padding.left - padding.right];
+  get count(): number {
+    return Number.parseInt(this._count + '');
   }
 
-  axisScale() {
-    return d3.scaleBand()
-      .domain(this.domain())
-      .range(this.range())
-      .paddingInner(1);
+  @Input() text: (value: any) => string;
+
+  setScale() {
+    let type = this.type.slice(0,1).toUpperCase() + this.type.slice(1).toLowerCase();
+    this.scale = d3[`scale${type}`]();
   }
 
-  axis(group) {
-    const padding = this.svgService.padding;
-    const y = this.svgService.height - padding.bottom;
-    group
-      .attr('class', `nc-axis nc-axis-x`)
-      .attr('transform', `translate(${padding.left}, ${y})`)
-      .call(d3.axisBottom(this.axisScale()))
+  setDomain() {
+    if(this.scale.domain){
+      let data = this.container.data;
+      if(this.key) {
+        data = data.map(item => item[this.key]);
+      }
+
+      if(this.type === 'time'){
+        data = [data[0], data[data.length - 1]];
+        data = data.map(item => {
+          return this.transtimeValue(item);
+        });
+      }
+      this.scale.domain(data);
+    }
   }
 
-  render() {
-    const svg = d3.select(this.svgService.svg);
-    svg.append('g').call((group) => {
-      this.axis(group);
-    });
+  transtimeValue(item): Date {
+    return item instanceof Date ? item : new Date(item);
   }
 
-  constructor(private svgService: SvgService) {
+  setRange() {
+    if(this.scale.range) {
+      this.scale.range([0, this.container.width - this.container.padding.left - this.container.padding.right]);
+    }
   }
 
-  registerStateOnChange(fn: any): void {
-
+  setScaleOptions() {
+    if(this.type === 'band') {
+      const scale = this.scale as ScaleBand<any>;
+      scale.paddingInner(1);
+    }
   }
 
-  writeStateValue(value: string): void {
+  setAxis() {
+    this.axis = axisBottom(this.scale);
+  }
+
+  setAxisOptions() {
+    if(this.type !== 'band') {
+
+      if(this.count) {
+        this.axis.ticks(this.count);
+      }
+    }
+
+    if(this.text) {
+      this.axis.tickFormat(this.text)
+    }
+  }
+
+  getRealTickValues() {
+    let scale = this.scale as any;
+    let tickArguments = this.count ? [this.count] : [];
+    return scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain();
+  }
+
+  render(): void {
+    this.group.attr('transform', `translate(${this.container.padding.left} , ${this.container.height - this.container.padding.bottom})`);
+    this.setScale();
+    this.setDomain();
+    this.setRange();
+    this.setScaleOptions();
+    this.setAxis();
+    this.setAxisOptions();
+    this.group.call(this.axis);
+    super.ready();
+  }
+
+  getPosition(data: any): number {
+    let method = `trans${this.type.toLowerCase()}Value`;
+    let item = this.key ? data[this.key] : data;
+    let value = this[method] ? this[method](item) : item;
+    if(this.key){
+      return this.scale(value);
+    }else{
+      return this.scale(value);
+    }
+  }
+
+  constructor(@Host() private container: Container) {
+    super(container);
+    this.container.events
+      .pipe(filter(event => event instanceof ViewReady))
+      .subscribe(() => this.render());
+  }
+
+  ngOnInit(): void {
+    this.group = this.container.root.append('g');
   }
 
 }

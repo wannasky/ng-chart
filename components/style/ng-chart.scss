@@ -4,4 +4,8 @@
     stroke: none;
     fill: #666;
   }
+
+  line {
+    shape-rendering: crispEdges;
+  }
 }

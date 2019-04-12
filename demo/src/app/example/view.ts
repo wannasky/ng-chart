@@ -33,7 +33,7 @@ export const view: View[] = [
       {
         title: 'Area Chart',
         examples: {
-          areaChart: {
+          'basic': {
             title: '基本使用',
             component: AreaChartBasicComponent,
             source: [Source.HTML, Source.TS, Source.SCSS, {name: 'JSON', filename: 'data/data.json'}]

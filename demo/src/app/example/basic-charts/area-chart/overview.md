@@ -1,3 +1,3 @@
 # area chart
 
-<!-- example(areaChart) -->
+<!-- example(basic) -->

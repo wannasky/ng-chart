@@ -1,7 +1,34 @@
 <div>
-  <nc-area width="700" height="300" [data]="data">
-    <nc-axis-x label="name"></nc-axis-x>
-    <nc-axis-y></nc-axis-y>
-    <nc-area-chart key="pv" shape="monotone"></nc-area-chart>
+  <nc-area width="700" height="300" padding="10 30 30 50" [data]="page">
+    <nc-defs>
+      <nc-linear-gradient #uvFill='ncLinearGradient'>
+        <nc-stop offset="5%" stopColor="#8884d8" stopOpacity="0.8"></nc-stop>
+        <nc-stop offset="95%" stopColor="#8884d8" stopOpacity="0"></nc-stop>
+      </nc-linear-gradient>
+      <nc-linear-gradient #pvFill='ncLinearGradient'>
+        <nc-stop offset="5%" stopColor="#82ca9d" stopOpacity="0.8"></nc-stop>
+        <nc-stop offset="95%" stopColor="#82ca9d" stopOpacity="0"></nc-stop>
+      </nc-linear-gradient>
+    </nc-defs>
+    <nc-grid></nc-grid>
+    <nc-axis-x key="name" type="band"></nc-axis-x>
+    <nc-axis-y count="5"></nc-axis-y>
+    <nc-area-chart key="pv" [fill]="pvFill" stroke="#82ca9d" shape="monotone"></nc-area-chart>
+    <nc-area-chart key="uv" [fill]="uvFill" stroke="#8884d8" shape="monotone"></nc-area-chart>
   </nc-area>
 </div>
+
+<!--<div>-->
+  <!--<nc-area width="700" height="300" padding="10 30 30 50" [data]="data">-->
+    <!--<nc-defs>-->
+      <!--<nc-linear-gradient #dvFill='ncLinearGradient'>-->
+        <!--<nc-stop offset="5%" stopColor="#82ca9d" stopOpacity="0.8"></nc-stop>-->
+        <!--<nc-stop offset="95%" stopColor="#82ca9d" stopOpacity="0.2"></nc-stop>-->
+      <!--</nc-linear-gradient>-->
+    <!--</nc-defs>-->
+    <!--<nc-grid></nc-grid>-->
+    <!--<nc-axis-x key="date" type="time"></nc-axis-x>-->
+    <!--<nc-axis-y count="5"></nc-axis-y>-->
+    <!--<nc-area-chart key="value" [fill]="dvFill"></nc-area-chart>-->
+  <!--</nc-area>-->
+<!--</div>-->

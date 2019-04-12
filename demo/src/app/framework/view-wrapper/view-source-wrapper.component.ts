@@ -57,7 +57,7 @@ export class ViewSourceWrapperComponent {
     if(_tabs) {
       _tabs.forEach(item => {
         if(typeof item === 'string'){
-          tabs.push({name: item, filename: `${baseUrl}/${this.example}.component-${item.toLowerCase()}.html`});
+          tabs.push({name: item, filename: `${baseUrl}/${this.example}/${this.example}.component-${item.toLowerCase()}.html`});
         }else {
           const suffixIndex = item.filename.lastIndexOf('.');
           const filename = item.filename.slice(0, suffixIndex);
@@ -67,7 +67,7 @@ export class ViewSourceWrapperComponent {
       });
     }else{
       ['HTML', 'TS', 'CSS'].forEach(item => {
-        tabs.push({name: item, filename: `${baseUrl}/${this.example}.component-${item.toLowerCase()}.html`});
+        tabs.push({name: item, filename: `${baseUrl}/${this.example}/${this.example}.component-${item.toLowerCase()}.html`});
       });
     }
     this.currentTab = tabs[0].name;

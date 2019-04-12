@@ -13,6 +13,5 @@ export class AppInfoComponent {
 
   constructor(private appViewService: AppViewService) {
     this.views = this.appViewService.getViews();
-    console.log(this.views)
   }
 }
